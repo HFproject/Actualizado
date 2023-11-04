@@ -17,6 +17,7 @@ import argparse
 import datetime
 import time
 from datetime import datetime, timedelta
+from scipy.sparse import csr_matrix
 import datetime
 import pandas as pd
 
