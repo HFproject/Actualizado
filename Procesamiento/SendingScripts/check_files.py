@@ -9,7 +9,6 @@ import calendar
 #python3 check_files.py  -path /home/soporte/ -lo 12 -type out
 #python3 check_files.py  -path /home/soporte/ -lo 12 -type rtdi
 
-
 # En caso no se pueda enviar hacer escribir etas lineas >
 
 #ssh -X -C wmaster@jro-app.igp.gob.pe -p 6633
@@ -155,7 +154,7 @@ def File_writer(dias_faltantes,station_type,datatype,year,rxcode):
                     
                     indice = dias_faltantes[Tx_s[i]].index(j)
                     a_None = [indice for indice, dato in enumerate(dias_faltantes[Tx_s[i]]) if dato == None]
-                    
+                    print("a_None:",a_None)
                     try:
                         if j > d and dias_faltantes[Tx_s[i]][indice-1] < d:
                         
@@ -163,12 +162,21 @@ def File_writer(dias_faltantes,station_type,datatype,year,rxcode):
                             #print("\n")
                             #print("Dia faltante: ",d)
                             dias_faltantes[Tx_s[i]].insert(indice,None)
-                            #print(Tx_s[i]," AFTER: ",dias_faltantes[Tx_s[i]],sep=" ")
+                            print(Tx_s[i]," AFTER: ",dias_faltantes[Tx_s[i]],sep=" ")
                             break
+                        elif j < d and dias_faltantes[Tx_s[i]][indice] == dias_faltantes[Tx_s[i]][-1]:
+                            dias_faltantes[Tx_s[i]].append(None)
+                            print(Tx_s[i]," AFTER: ",dias_faltantes[Tx_s[i]],sep=" ")
+                            break
+
                     except:
                         if j == None:
                             cont_n += 1
-
+                            if dias_faltantes[Tx_s[i]][a_None[cont_n]] == dias_faltantes[Tx_s[i]][-1]:
+                                if dias_faltantes[Tx_s[i]][a_None[cont_n]-1] < d:
+                                    dias_faltantes[Tx_s[i]].append(None)
+                                    #print(Tx_s[i]," AFTER: ",dias_faltantes[Tx_s[i]],sep="\n")
+                                    break
                             if dias_faltantes[Tx_s[i]][a_None[cont_n]+1] == None:
                                 continue
                             else:
@@ -178,8 +186,9 @@ def File_writer(dias_faltantes,station_type,datatype,year,rxcode):
                                     break
                                 else:
                                     continue
+        print("")
     #print(rxcode)
-    print(dias_faltantes)
+    print("Dias_Faltantes",dias_faltantes)
 
     for i in range(len(Tx_s)):
         print(Tx_s[i],":",len(dias_faltantes[Tx_s[i]]))
@@ -198,7 +207,7 @@ def File_writer(dias_faltantes,station_type,datatype,year,rxcode):
         print(list(dias_faltantes.keys()))
         codigos = [0,1,2]
         for i in range(lon):
-            lista = [ dias_faltantes[t][i] for t in list(dias_faltantes.keys()) ]
+            lista = [ dias_faltantes[t][i] for t in list(dias_faltantes.keys())]
             #print(lista)
             if rxcode in [11,12,21,22]: #Estacion doble
                 f.write(str(lista[0])+','+str(lista[1])+','+str(lista[2])+"\n") #File contains
