@@ -190,7 +190,7 @@ class Agent:
                 for p in dato[1]:
                     
                     dist = p - peak
-                    dist1= self.LIST_AI[cont+1][1][0]-p
+                    
                     #print("Contador",cont)
                     #print("Minuto",dato[0],"pico",p)
                     #print(self.snr[:,cont][p],0.65*self.snr[:,cont][dato[1][0]])
@@ -202,10 +202,12 @@ class Agent:
                             list_dist.append(abs(dist))
                         else:
                             continue
-                
-                minimo = min(list_dist)
-                index = list_dist.index(minimo)  
-                peak = dato[1][index]
+                if len(list_dist) == 0:
+                    peak = peak
+                else:
+                    minimo = min(list_dist)
+                    index = list_dist.index(minimo)  
+                    peak = dato[1][index]
             
             picos_oficiales.append([cont,dato[0],peak])
         return picos_oficiales
