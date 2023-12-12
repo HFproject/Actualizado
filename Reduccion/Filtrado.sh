@@ -8,8 +8,9 @@
 #Variable 'del' para el borrado de archivos de espectros originales. 0: No borrar *.hdf5 espectros. 1: Borrar *.hdf5 espectros
 del=0
 dc=0
-old=1
+old=0
 Red=1
+graphics_path="/media/soporte/PROCDATA/Reducted/Pictures/JROA/"
 ###########################################################
 
 #./Filtrado.py -f 3.64   -path $1 -h_s 0 -code 2 -C $2 -date $3 -R 1 -del $del -path_o $4 -dc $dc -P 1 -graphics_folder="/media/soporte/RAWDATA/Pictures/Estaciones_RX/JROB/" -lo $5
@@ -19,13 +20,13 @@ Red=1
 
 if [[ $3 == f0 ]]
 then
-python3 r_hf.py -f 2.72 -path $1 -code 0 -C $2 -date $4 -path_o $5 -R $Red -del $del -dc $dc -P 0 -graphics_folder "/media/soporte/PROCDATA/Reducted/Pictures/JROA/" -lo $6 -old $old
-python3 r_hf.py -f 2.72 -path $1 -code 1 -C $2 -date $4 -path_o $5 -R $Red -del $del -dc $dc -P 0 -graphics_folder "/media/soporte/PROCDATA/Reducted/Pictures/JROA/" -lo $6 -old $old
-python3 r_hf.py -f 2.72 -path $1 -code 2 -C $2 -date $4 -path_o $5 -R $Red -del $del -dc $dc -P 0 -graphics_folder "/media/soporte/PROCDATA/Reducted/Pictures/JROA/" -lo $6 -old $old
+python3 r_hf.py -f 2.72 -path $1 -code 0 -C $2 -date $4 -path_o $5 -R $Red -del $del -dc $dc -P 1 -graphics_folder $graphics_path -lo $6 -old $old
+python3 r_hf.py -f 2.72 -path $1 -code 1 -C $2 -date $4 -path_o $5 -R $Red -del $del -dc $dc -P 1 -graphics_folder $graphics_path -lo $6 -old $old
+python3 r_hf.py -f 2.72 -path $1 -code 2 -C $2 -date $4 -path_o $5 -R $Red -del $del -dc $dc -P 1 -graphics_folder $graphics_path -lo $6 -old $old
 
 elif [[ $3 == f1 ]]
 then
-python3 r_hf.py -f 3.64 -path $1 -code 0 -C $2 -date $4 -path_o $5 -R $Red -del $del -dc $dc -P 0 -graphics_folder "/media/soporte/PROCDATA/Reducted/Pictures/JROA/" -lo $6 -old $old
-python3 r_hf.py -f 3.64 -path $1 -code 1 -C $2 -date $4 -path_o $5 -R $Red -del $del -dc $dc -P 0 -graphics_folder "/media/soporte/PROCDATA/Reducted/Pictures/JROA/" -lo $6 -old $old
-python3 r_hf.py -f 3.64 -path $1 -code 2 -C $2 -date $4 -path_o $5 -R $Red -del $del -dc $dc -P 0 -graphics_folder "/media/soporte/PROCDATA/Reducted/Pictures/JROA/" -lo $6 -old $old
+python3 r_hf.py -f 3.64 -path $1 -code 0 -C $2 -date $4 -path_o $5 -R $Red -del $del -dc $dc -P 1 -graphics_folder $graphics_path -lo $6 -old $old
+python3 r_hf.py -f 3.64 -path $1 -code 1 -C $2 -date $4 -path_o $5 -R $Red -del $del -dc $dc -P 1 -graphics_folder $graphics_path -lo $6 -old $old
+python3 r_hf.py -f 3.64 -path $1 -code 2 -C $2 -date $4 -path_o $5 -R $Red -del $del -dc $dc -P 1 -graphics_folder $graphics_path -lo $6 -old $old
 fi
